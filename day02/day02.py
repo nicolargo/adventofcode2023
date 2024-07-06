@@ -91,7 +91,7 @@ def read_games_records(input_file):
 
 
 def main():
-    result = 0
+    part1 = 0
 
     games = []
     for game_record in read_games_records(args.input_file):
@@ -100,9 +100,17 @@ def main():
         logger.debug(new_game)
         logger.debug(new_game.stats)
         if new_game.check({"red": 12, "green": 13, "blue": 14}):
-            result += new_game.id
+            part1 += new_game.id
 
-    print(result)
+    print(part1)
+
+    # === Part 2
+    part2 = 0
+    for g in games:
+        part2 += (
+            g.stats["red"]["min"] * g.stats["green"]["min"] * g.stats["blue"]["min"]
+        )
+    print(part2)
 
 
 if __name__ == "__main__":
